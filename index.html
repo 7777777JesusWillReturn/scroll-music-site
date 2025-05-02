@@ -38,6 +38,29 @@
     <p>Start scrolling to hear music. Scroll faster to increase volume!</p>
   </div>
 
-  <!-- Multiple audio format support -->
-  <audio id="scrollMusic" p
+  <audio id="scrollMusic" loop>
+    <source src="OpeningTitles.mp3.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
+  <script>
+    const audio = document.getElementById('scrollMusic');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const scrollSpeed = Math.abs(scrollTop - lastScrollTop);
+      lastScrollTop = scrollTop;
+
+      if (audio.paused) {
+        audio.play().catch(e => console.log("Autoplay error:", e));
+      }
+
+      // Normalize scrollSpeed to a volume range between 0 and 1
+      const volume = Math.min(1, scrollSpeed / 50);
+      audio.volume = volume;
+    });
+  </script>
+
+</body>
+</html>
