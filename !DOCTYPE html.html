@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Multi-Page Site</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: #333;
+      padding: 1em;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+    }
+    main {
+      padding: 2em;
+    }
+    .comment-section {
+      margin-top: 2em;
+      background: white;
+      padding: 1em;
+      border-radius: 8px;
+    }
+    .comment {
+      margin-bottom: 1em;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.5em;
+    }
+    footer {
+      text-align: center;
+      padding: 1em;
+      background-color: #333;
+      color: white;
+      position: fixed;
+      width: 100%;
+      bottom: 0;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main>
+    <h1>Welcome to My Site</h1>
+    <p>This is the home page. You can navigate to other pages using the menu above.</p>
+
+    <div class="comment-section">
+      <h2>Leave a Comment</h2>
+      <form id="commentForm">
+        <input type="text" id="commentInput" placeholder="Your comment..." required style="width: 100%; padding: 0.5em;">
+        <button type="submit" style="margin-top: 0.5em;">Post</button>
+      </form>
+      <div id="comments"></div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 My Multi-Page Site
+  </footer>
+
+  <script>
+    const form = document.getElementById('commentForm');
+    const commentInput = document.getElementById('commentInput');
+    const commentsDiv = document.getElementById('comments');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const commentText = commentInput.value.trim();
+      if (commentText) {
+        const commentEl = document.createElement('div');
+        commentEl.className = 'comment';
+        commentEl.textContent = commentText;
+        commentsDiv.prepend(commentEl);
+        commentInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
